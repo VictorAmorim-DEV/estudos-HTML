@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Página teste</title>
+        <link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+    </head>
+    <body>
+        <header>
+            <h1> Página de teste!</h1>
+        </header>
+        <nav>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore totam nobis aperiam maxime quis qui laudantium eligendi veritatis laborum nihil illum perspiciatis consequuntur error doloremque, nesciunt dolorem dicta harum aspernatur.br<br><br>
+            <h3>Essa página está sendo utilizada pelo proprietário Victor para teste em seus estudos.</h3>
+            <h4>Caso tenha interesse em me conhecer, basta acessar <a href="https://www.instagram.com/victor_amorim95/">meu Instagram</a>. Não se esqueça de me seguir!</h4><br>
+            <a href wm-atrib="testeTexto.html" > Link de teste de texto</a> &nbsp;&nbsp;
+            <a href wm-atrib="testeLista.html" > Link de teste de lista</a> &nbsp;&nbsp;
+            <a href wm-atrib="testeTabela.html" > Link de teste de tabela</a> &nbsp;&nbsp;
+            <a href="testeFormulario.html" > Link de teste de formulário</a> &nbsp;&nbsp;
+        </nav>
+        <section id="conteudo"></section>
+    <footer>
+        <br>
+        Obrigado pela atenção!
+    </footer>
+    <script>
+        document.querySelectorAll('[wm-atrib]').forEach(link => {
+            const conteudo = document.getElementById('conteudo')
+            link.onclick = function(element) {
+               element.preventDefault()
+                fetch(link.getAttribute('wm-atrib'))
+                    .then(resp => resp.text())
+                    .then(html => {
+                        conteudo.innerHTML = html
+                        document.querySelectorAll('[passos]').forEach(folder => { // Inicio do código para funcionalidade da lista (abrir e fechar)
+                            folder.onclick = function(element) {
+                                console.log('teste')
+                                const ul = folder.nextElementSibling
+                                const d = ul.style.display
+                                ul.style.display = d === 'none' ? 'block' : 'none' //Final do código para funcionalidade da lista
+                            }
+                        }) 
+                        let tree = document.getElementById("tree") //Aplicando o style da lista para o tipo "tree" (árvore)
+                        tree.classList.add("tree")
+                    })
+            }
+        }
+        ) 
+    </script>
+    
+    </body>
+</html>

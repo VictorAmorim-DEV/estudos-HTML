@@ -1,0 +1,85 @@
+<h2>Teste de Formulário</h2><br>
+<form>
+    <h3>Dados do usuário:</h3>
+    <!--Campo do nome do usuário-->
+    <label for="campo_nome">Nome:</label>
+    <input required id="campo_nome" type="text" placeholder="Digite seu nome"><br><br>
+
+    <!--Campo do sobrenome do usuário-->
+    <label for="campo_sobrenome">Sobrenome:</label>
+    <input required id="campo_sobrenome" type="text" placeholder="Digite seu sobrenome"><br><br>
+
+    <!--Campo da data de nascimento do usuário-->
+    <label for="data_nascimento">Data de nascimento:</label>
+    <input required id="data_nascimento" type="date"><br><br>
+
+     <!--Campo do email do usuário-->
+    <label for="campo_email">Email:</label>
+    <input required id="campo_email" type="email" placeholder="Digite seu email"><br><br>
+
+    <!--Campo do número de telefone do usuário-->
+    <label for="campo_numero">Número:</label>
+    <input required id="campo_numero" type="tel" maxlength="20" placeholder="Digite seu numero"><br><br>
+
+    <!--Campo de questionário de saúde do usuário-->
+    <h3>Possui alguma deficiência?</h3>
+    <input id="com_deficiencia" type="radio" name="possuiDeficiencia" value="comDeficiencia">
+    <label for="com_deficiencia">Sim</label>
+
+    <input id="sem_deficiencia" type="radio" name="possuiDeficiencia" value="semDeficiencia"> 
+    <label for="sem_deficiencia">Não</label>
+    <br>
+
+    <!--Campo de qualificações do usuário-->
+    <h3>Marque as opções que você considera ser suas caracteristicas:</h3>
+    <input id="qualidade_01" type="checkbox" name="proativo" value="Proativo">
+    <label for="qualidade_01">Proativo</label><br>
+
+    <input id="qualidade_02" type="checkbox" name="comunicativo" value="Comunicativo">
+    <label for="qualidade_02">Comunicativo</label><br>
+
+    <input id="qualidade_03" type="checkbox" name="dedicado" value="Dedicado">
+    <label for="qualidade_03">Dedicado</label><br>
+
+    <input id="qualidade_04" type="checkbox" name="responsavel" value="Responsavel">
+    <label for="qualidade_04">Responsável</label><br>
+
+    <input id="qualidade_05" type="checkbox" name="pontual" value="Pontual">
+    <label for="qualidade_04">Pontual</label><br><br><br>
+
+    <input type="submit" value="Enviar formulário">
+
+    <button style="float: right";> <a href="paginaTeste.html">&lt;--Voltar</a> </button> <!--&lt; representa o "<"-->
+</form>
+
+<!--Javascript para formatação automatica do número de telefone-->
+<script>
+  const telefoneInput = document.getElementById('campo_numero')
+
+  telefoneInput.addEventListener('input', function (e) {
+    let numero = e.target.value.replace(/\D/g, '') // remove tudo que não é número
+
+    // Limita a 11 dígitos
+    if (numero.length > 11) {
+      numero = numero.slice(0, 11)
+    }
+
+    // Aplica a máscara (XX) X XXXX-XXXX
+    let formatado = numero
+
+    if (numero.length > 0) {
+      formatado = '(' + numero.substring(0, 2)
+    }
+    if (numero.length >= 3) {
+      formatado += ') ' + numero.substring(2, 3)
+    }
+    if (numero.length >= 4) {
+      formatado += ' ' + numero.substring(3, 7)
+    }
+    if (numero.length >= 8) {
+      formatado += '-' + numero.substring(7)
+    }
+
+    e.target.value = formatado
+  })
+</script>
